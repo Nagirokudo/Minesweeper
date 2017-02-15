@@ -1,7 +1,7 @@
 import de.bezier.guido.*;
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
-int NUM_ROWS = 20;
-int NUM_COLS = 20;
+public final static int NUM_ROWS = 20;
+public final static int NUM_COLS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
 void setup ()
@@ -92,7 +92,8 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
-        //your code here
+         //your code here
+
     }
 
     public void draw () 
@@ -126,7 +127,43 @@ public class MSButton
     {
         int numBombs = 0;
         //your code here
-        
+        if (isValid(row-1, col-1) && bombs.contains(buttons[row-1][col-1]))
+        {
+            numBombs++;
+        }
+        if (isValid(row-1, col) && bombs.contains(buttons[row-1][col]))
+        {
+            numBombs++;
+        }
+        if (isValid(row-1, col+1) && bombs.contains(buttons[row-1][col+1]))
+        {
+            numBombs++;
+        }
+        if (isValid(row, col-1) && bombs.contains(buttons[row][col-1]))
+        {
+            numBombs++;
+        }
+        if (isValid(row, col) && bombs.contains(buttons[row][col]))
+        {
+            numBombs++;
+        }
+        if (isValid(row, col+1) && bombs.contains(buttons[row][col+1]))
+        {
+            numBombs++;
+        }
+        if (isValid(row+1, col-1) && bombs.contains(buttons[row+1][col-1]))
+        {
+            numBombs++;
+        }
+        if (isValid(row+1, col) && bombs.contains(buttons[row+1][col]))
+        {
+            numBombs++;
+        }
+        if (isValid(row+1, col+1) && bombs.contains(buttons[row+1][col+1]))
+        {
+            numBombs++;
+        }
+
         return numBombs;
     }
 }
