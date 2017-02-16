@@ -28,7 +28,7 @@ void setup ()
 public void setBombs()
 {
     //your code
-    for (int r = 0; r < 20; r++)
+    for (int r = 0; r < 30; r++)
     {
         int rBombs = (int)(Math.random()*NUM_ROWS);
         int cBombs = (int)(Math.random()*NUM_COLS);
@@ -92,7 +92,70 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
-         //your code here
+        //your code here
+        //if keyPressed is true, toggles marked to either either true or false. If marked is false set click to false
+
+        if(keyPressed == true)
+        {
+            marked = !true;
+        }
+        if(marked == false)
+        {
+            clicked = false;
+        }
+        // else if bombs contains this button display the losing message
+        else if (bombs.contains(this))
+        {
+            displayLosingMessage();
+        }
+        // else if countBombs returns a number of neighboring mines greater than zero, set the label to that number
+        else if (countBombs(this.r, this.c) > 0)
+        {
+            setLabel("" + countBombs(r,c));
+        }
+
+        // else recursively call mousePressed with the valid, unclicked, neighboring buttons in all 8 directions
+        else 
+        {
+            clicked = true;
+            if (isValid(r-1, c-1) && !buttons[r-1][c-1].clicked)
+            {
+                buttons[r-1][c-1].mousePressed;
+            }
+            if (isValid(r-1, c) && !buttons[r-1][c].clicked)
+            {
+                buttons[r-1][c].mousePressed;
+            }
+            if (isValid(r-1, c+1) && !buttons[r-1][c+1].clicked)
+            {
+                buttons[r-1][c+1].mousePressed;
+            }
+            if (isValid(r, c-1) && !buttons[r][c-1].clicked)
+            {
+                buttons[r][c-1].mousePressed;
+            }
+            if (isValid(r, c) && !buttons[r][c].clicked)
+            {
+                buttons[r][c].mousePressed;
+            }
+            if (isValid(r, c+1) && !buttons[r][c+1].clicked)
+            {
+                buttons[row][c+1].mousePressed;
+            }
+            if (isValid(r+1, c-1) && !buttons[r+1][c-1].clicked)
+            {
+                buttons[r+1][c-1].mousePressed;
+            }
+            if (isValid(r+1, c) && !buttons[r+1][c].clicked)
+            {
+                buttons[r+1][c].mousePressed;
+            }
+            if (isValid(r+1, c+1) && !buttons[r+1][c+1].clicked)
+            {
+                buttons[r+1][c+1].mousePressed;
+            }
+
+        }
 
     }
 
