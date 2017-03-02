@@ -29,7 +29,7 @@ void setup ()
 public void setBombs()
 {
     //your code
-    for (int r = 0; r < 30; r++)
+    for (int r = 0; r < 20; r++)
     {
         int rBombs = (int)(Math.random()*NUM_ROWS);
         int cBombs = (int)(Math.random()*NUM_COLS);
