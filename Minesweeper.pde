@@ -204,6 +204,7 @@ public class MSButton
         rect(x, y, width, height, 5);
         fill(0);
         stroke(50);
+        textSize(15);
         text(label,x+width/2,y+height/2);
     }
     public void setLabel(String newLabel)
