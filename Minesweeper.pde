@@ -4,6 +4,7 @@ public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
+boolean gameOver;
 
 void setup ()
 {
@@ -24,6 +25,7 @@ void setup ()
     }
     bombs = new ArrayList<MSButton>();
     setBombs();
+    gameOver = false;
 
 }
 public void setBombs()
@@ -44,7 +46,7 @@ public void setBombs()
 public void draw ()
 {
     background(0);
-    if(isWon())
+    if(!gameOver && isWon())
         displayWinningMessage();
 }
 public boolean isWon()
@@ -129,10 +131,20 @@ public class MSButton
             marked = !marked;  
         }
         // else if bombs contains this button display the losing message
-        else if (bombs.contains(this))
+        else if (bombs.contains(this) && gameOver == false)
         {
+            for(int r=0;r<NUM_ROWS;r++)
+            {
+                for(int c=0;c<NUM_COLS;c++)
+                {
+                    if(!buttons[r][c].isClicked())
+                        buttons[r][c].mousePressed();
+                }
+            }
+            gameOver = true;
             displayLosingMessage();
         }
+
         // else if countBombs returns a number of neighboring mines greater than zero, set the label to that number
         else if (countBombs(r, c) > 0)
         {
